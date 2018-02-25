@@ -118,7 +118,7 @@ import com.google.android.gms.tasks.Task;
                 @Override
                 public void onClick (View v){
                     // Opening new user registration activity using intent on button click.
-                    Intent intent = new Intent(MapsActivity.this, BlueTooth.class);
+                    Intent intent = new Intent(MapsActivity.this, SendReceiveBTActivity.class);
                     startActivity(intent);
                 }
             });
