@@ -10,7 +10,7 @@
         android:id="@+id/enableBT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="enableBT"
-        tools:layout_editor_absoluteX="79dp"
-        tools:layout_editor_absoluteY="87dp" />
+        android:text="enable BT"
+        tools:layout_editor_absoluteX="122dp"
+        tools:layout_editor_absoluteY="158dp" />
 </android.support.constraint.ConstraintLayout>

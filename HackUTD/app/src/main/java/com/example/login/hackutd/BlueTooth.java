@@ -24,59 +24,59 @@ public class BlueTooth extends AppCompatActivity {
     BluetoothAdapter mBluetoothAdapter;
     BluetoothDevice BTDevice;
     Button enableBT;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        enableBT = (Button)findViewById(R.id.enableBT);
+    protected void onCreate(Bundle savedInstanceState) {
+        setContentView(R.layout.activity_blue_tooth);
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_blue_tooth);
+
+        LOG_TAG = getResources().getString(R.string.app_name);
+        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        enableBT = (Button) findViewById(R.id.enableBT);
         enableBT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 enableBluetoothOnDevice();
             }
         });
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_blue_tooth);
-
-        LOG_TAG = getResources().getString(R.string.app_name);
-        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
     }
-    private void enableBluetoothOnDevice()
-    {
-        if (mBluetoothAdapter == null)
-        {
+
+    private void enableBluetoothOnDevice() {
+        if (mBluetoothAdapter == null) {
             Log.e(LOG_TAG, "This device does not have a bluetooth adapter");
             finish();
             // If the android device does not have bluetooth, just return and get out.
             // There's nothing the app can do in this case. Closing app.
+            Toast.makeText(this, "This device does not have a bluetooth adapter", Toast.LENGTH_LONG).show();
         }
 
         // Check to see if bluetooth is enabled. Prompt to enable it
-        if( !mBluetoothAdapter.isEnabled())
-        {
+        if (!mBluetoothAdapter.isEnabled()) {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+            Toast.makeText(this, "request turn on BT", Toast.LENGTH_LONG).show();
         }
     }
+
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REQUEST_ENABLE_BT)
-        {
-            if (resultCode == 0)
-            {
+        if (requestCode == REQUEST_ENABLE_BT) {
+            if (resultCode == 0) {
                 // If the resultCode is 0, the user selected "No" when prompt to
                 // allow the app to enable bluetooth.
                 // You may want to display a dialog explaining what would happen if
                 // the user doesn't enable bluetooth.
                 Toast.makeText(this, "The user decided to deny bluetooth access", Toast.LENGTH_LONG).show();
-            }
-            else
+            } else
                 Log.i(LOG_TAG, "User allowed bluetooth access!");
         }
     }
 
+/*
     private BluetoothObject getBluetoothDevices()
     {
         BluetoothObject BTDevice = null;
@@ -149,4 +149,6 @@ public class BlueTooth extends AppCompatActivity {
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         registerReceiver(mReceiver, filter);
     }
+
+*/
 }

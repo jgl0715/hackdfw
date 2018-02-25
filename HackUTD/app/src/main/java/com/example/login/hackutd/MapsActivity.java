@@ -1,5 +1,6 @@
 package com.example.login.hackutd;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -83,6 +85,8 @@ import com.google.android.gms.tasks.Task;
         private String[] mLikelyPlaceAttributions;
         private LatLng[] mLikelyPlaceLatLngs;
 
+        Button blueTooth;
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -109,7 +113,15 @@ import com.google.android.gms.tasks.Task;
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
-
+            blueTooth = (Button)findViewById(R.id.Blue_tooth);
+            blueTooth.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick (View v){
+                    // Opening new user registration activity using intent on button click.
+                    Intent intent = new Intent(MapsActivity.this, BlueTooth.class);
+                    startActivity(intent);
+                }
+            });
         }
 
         /**
