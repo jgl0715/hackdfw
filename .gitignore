@@ -55,4 +55,3 @@ freeline/
 freeline_project_description.json
 HackUTD/app/src/main/java/com/example/login/hackutd/BlueTooth.java
 HackUTD/app/src/main/res/layout/activity_send_receive_bt.xml
-HackUTD/app/src/main/java/com/example/login/hackutd/SendReceiveBTActivity.java
