@@ -11,6 +11,7 @@ package com.example.login.hackutd;
         import android.bluetooth.BluetoothSocket;
         import android.content.Context;
         import android.util.Log;
+        import android.widget.Toast;
 
         import java.io.IOException;
         import java.io.InputStream;
@@ -251,7 +252,7 @@ public class BluetoothConnectionService {
             byte[] buffer = new byte[1024];  // buffer store for the stream
 
             int bytes; // bytes returned from read()
-
+            Log.d(TAG, "Run");
             // Keep listening to the InputStream until an exception occurs
             while (true) {
                 // Read from the InputStream
@@ -259,8 +260,12 @@ public class BluetoothConnectionService {
                     bytes = mmInStream.read(buffer);
                     String incomingMessage = new String(buffer, 0, bytes);
                     Log.d(TAG, "InputStream: " + incomingMessage);
+                    if (incomingMessage=="d"){
+
+                    }
+                    Toast.makeText(SendReceiveBTActivity.getContext(),"Receive signal", Toast.LENGTH_LONG).show();
                 } catch (IOException e) {
-                    Log.e(TAG, "write: Error reading Input Stream. " + e.getMessage() );
+                    Log.e(TAG, "write: Error reading Input Stream. " + Log.getStackTraceString(e));
                     break;
                 }
             }
@@ -278,11 +283,12 @@ public class BluetoothConnectionService {
         }
 
         /* Call this from the main activity to shutdown the connection */
-        public void cancel() {
-            try {
-                mmSocket.close();
-            } catch (IOException e) { }
-        }
+//        public void cancel() {
+//            Log.e(TAG, "Closing socket");
+//           /* try {
+//           //     mmSocket.close();
+//            } catch (IOException e) { }*/
+//        }
     }
 
     private void connected(BluetoothSocket mmSocket, BluetoothDevice mmDevice) {

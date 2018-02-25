@@ -45,7 +45,7 @@ public class SendReceiveBTActivity extends AppCompatActivity implements AdapterV
     public DeviceListAdapter mDeviceListAdapter;
 
     ListView lvNewDevices;
-
+    private static Context mContext;
 
     // Create a BroadcastReceiver for ACTION_FOUND
     private final BroadcastReceiver mBroadcastReceiver1 = new BroadcastReceiver() {
@@ -184,7 +184,7 @@ public class SendReceiveBTActivity extends AppCompatActivity implements AdapterV
         btnEnableDisable_Discoverable = (Button) findViewById(R.id.btnDiscoverable_on_off);
         lvNewDevices = (ListView) findViewById(R.id.lvNewDevices);
         mBTDevices = new ArrayList<>();
-
+        mContext = getApplicationContext();
         btnStartConnection = (Button) findViewById(R.id.btnStartConnection);
         btnSend = (Button) findViewById(R.id.btnSend);
         etSend = (EditText) findViewById(R.id.editText);
@@ -222,7 +222,9 @@ public class SendReceiveBTActivity extends AppCompatActivity implements AdapterV
         });
 
     }
-
+    public static Context getContext() {
+        return mContext;
+    }
     //create method for starting connection
 //***remember the conncction will fail and app will crash if you haven't paired first
     public void startConnection(){
